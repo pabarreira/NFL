@@ -1,0 +1,45 @@
+<zk>
+	<window title="Edit Teams" border="normal"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('nflInterface.TeamsVM')">
+		<window title="Team Editor" border="normal"
+		mode="modal" visible="@load(vm.currentTeam ne null)">
+			Name:<textbox value="@load(vm.currentTeam.name)  @save(vm.currentTeam.name, before='save')"></textbox>
+			City:<textbox value="@load(vm.currentTeam.city)  @save(vm.currentTeam.city, before='save')"></textbox>
+			<hbox>
+				<button label="save" onClick="@command('save')"></button>
+				<button label="cancel" onClick="@command('cancel')"></button>
+			</hbox>
+		</window>
+	<groupbox mold="3d" closable="false">
+		<caption label="Teams list">
+			<button label="new" onClick="@command('newTeam')" />	
+		</caption>	
+		<listbox model="@load(vm.teams)">
+			<listhead>
+				<listheader label="Name"/>
+				<listheader label="City"/>
+				<listheader label="Actions"/>
+			</listhead>
+			<template name="model">
+				<listitem>
+					<listcell>
+						<label value="@load(each.name)"/>
+					</listcell>
+					<listcell>
+						<label value="@load(each.city)"/>
+					</listcell>
+					<listcell>
+						<button label="delete" onClick="@command('delete',team=each)"></button>
+						<button label="edit" onClick="@command('edit',team=each)"></button>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+		
+		Count:<label value="@load(vm.count)"></label>
+	</groupbox>
+	</window>
+
+
+</zk>
