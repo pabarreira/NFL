@@ -32,7 +32,7 @@ public class TeamsVM {
 		TransactionUtil.doTransaction(new Transaction() {
 			@Override
 			public void run(EntityManager em) {
-				List<Player> players = em.createQuery("SELECT t FROM Team t WHERE t.team.name='"+t.getName()+"'", Player.class).getResultList();
+				List<Player> players = em.createQuery("SELECT p FROM Player p WHERE p.team.name='"+t.getName()+"'", Player.class).getResultList();
 				for (Player player : players) {
 					player.setTeam(null);
 				}

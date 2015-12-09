@@ -1,5 +1,6 @@
 package nflInterface;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,6 +11,8 @@ import org.zkoss.bind.annotation.DependsOn;
 import org.zkoss.bind.annotation.NotifyChange;
 
 import nflpredator.entities.Player;
+import nflpredator.entities.Player.Player_pos;
+import nflpredator.entities.Player.Player_status;
 import nflpredator.entities.Team;
 import nflpredator.util.Transaction;
 import nflpredator.util.TransactionUtil;
@@ -22,14 +25,20 @@ public class PlayersVM {
 
 	public List<Player> getPlayers() {
 		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
-		return em.createQuery("select p from Player p", Player.class).getResultList();
-		
-		
+		return em.createQuery("select p from Player p", Player.class).getResultList();				
 	}
 	
 	public List<Team> getTeams() {
 		EntityManager em = DesktopEntityManagerManager.getDesktopEntityManager();
 		return em.createQuery("select d from Team d",Team.class).getResultList();
+	}
+	
+	public List<Player_pos> getPositions() {
+		return Arrays.asList(Player.Player_pos.values());
+	}
+	
+	public List<Player_status> getStatus() {
+		return Arrays.asList(Player.Player_status.values());
 	}
 	
 	@Command

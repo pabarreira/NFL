@@ -6,17 +6,17 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	<persistence-unit name="si-database" transaction-type="RESOURCE_LOCAL">
 		<!-- put here your entities. One <class> per entity -->
 		<class>nflpredator.entities.Team</class>
-		<class>nflpredator.entities.Player</class>		
+		<class>nflpredator.entities.Player</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.user" value="siuser" />
-			<property name="javax.persistence.jdbc.password" value="sipass" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/si" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="soloparami" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/siTest" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.max_fetch_depth" value="3" />
 			<!-- when hibernate starts, what will we do with de tables in de database? 
 				"create", "create- drop", "validate" or "update" -->
-			<property name="hibernate.hbm2ddl.auto" value="validate" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.use_sql_comments" value="true" />

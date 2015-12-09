@@ -18,11 +18,11 @@ public class Player {
 	private Player_pos position;
 	private Player_status status;
 	
-	public enum Player_pos {
+	public static enum Player_pos {
 		C, FB, RB, DT, OG, T, DB, DE, CB, FS, SAF, LB, TE, SS, OT, QB, NT, UNK, G, MLB, WR, ILB, K, LS, P, OLB, OL
 	}
 	
-	public enum Player_status {
+	public static enum Player_status {
 		InjuredReserve, Active, Unknown, PUP, Exempt
 	}
 	

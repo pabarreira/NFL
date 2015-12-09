@@ -4,19 +4,36 @@
 		viewModel="@id('vm') @init('nflInterface.PlayersVM')">
 		<window title="Player Editor" border="normal"
 		mode="modal" visible="@load(vm.currentPlayer ne null)">
-			name:<textbox value="@load(vm.currentPlayer.full_name)  @save(vm.currentPlayer.full_name, before='save')"></textbox>
-			
-			Team: 
-			
-			<combobox 
-			model="@load(vm.teams)" 
-			
-			selectedItem="@load(vm.currentPlayer.team) @save(vm.currentPlayer.team, before='save')">
-			
-			
+			<vbox>
+			<hbox>name:<textbox 
+					value="@load(vm.currentPlayer.full_name)  @save(vm.currentPlayer.full_name, before='save')">
+			</textbox>
+			</hbox>	
+			<hbox>Team:<combobox id="teamcombo"
+					model="@load(vm.teams)" 
+					selectedItem="@load(vm.currentPlayer.team) @save(vm.currentPlayer.team, before='save')">						
 			</combobox>
-			
-			
+			<zscript>
+			<![CDATA[
+				teamcombo.setItemRenderer(new ComboitemRenderer() {
+					void render(item, team, index) {
+						item.setLabel(team.getName());
+					}
+				});
+			]]>
+			</zscript>
+			</hbox>
+			<hbox>Position:<combobox 
+					model="@load(vm.positions)" 
+					selectedItem="@load(vm.currentPlayer.position) @save(vm.currentPlayer.position, before='save')">						
+			</combobox>
+			</hbox>
+			<hbox>Status:<combobox 
+					model="@load(vm.status)" 
+					selectedItem="@load(vm.currentPlayer.status) @save(vm.currentPlayer.status, before='save')">						
+			</combobox>			
+			</hbox>
+			</vbox>
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
 				<button label="cancel" onClick="@command('cancel')"></button>
@@ -30,6 +47,8 @@
 			<listhead>
 				<listheader label="Name"/>
 				<listheader label="Team"/>
+				<listheader label="Position"/>
+				<listheader label="Status"/>
 				<listheader label="Actions"/>
 			</listhead>
 			<template name="model">
@@ -38,7 +57,13 @@
 						<label value="@load(each.full_name)"/>
 					</listcell>
 					<listcell>
-						<label value="@load(each.team)"/>
+						<label value="@load(each.team.name)"/>
+					</listcell>
+					<listcell>
+						<label value="@load(each.position)"/>
+					</listcell>
+					<listcell>
+						<label value="@load(each.status)"/>
 					</listcell>
 					<listcell>
 						<button label="delete" onClick="@command('delete',player=each)"></button>
