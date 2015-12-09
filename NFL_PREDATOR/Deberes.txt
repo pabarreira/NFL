@@ -1,0 +1,11 @@
+
+OTE->
+	Game
+	Drive
+SOU->
+	Play
+	play_player
+	Agg_play
+PABLO->
+	Team Entidad Ok
+	Player Entidad Ok
