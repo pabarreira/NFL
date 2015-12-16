@@ -1,3 +1,8 @@
 <zk>
-	<window title="NLF PREDATOR" border="normal"></window>
+	<window title="NLF PREDATOR" border="normal">
+	<menubar>
+        <menuitem label="Teams" href="/edit_teams.zul"/>
+        <menuitem label="Players" href="/edit_players.zul"/>
+    </menubar>
+	</window>
 </zk>

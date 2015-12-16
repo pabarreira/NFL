@@ -4,4 +4,6 @@
 		<name>persistence-unit-name</name>
 		<value>si-database</value>
 	</preference>
+	<!-- Navbar -->
+	<!-- 8.0.1.FL.20151105-Eval -->
 </zk>

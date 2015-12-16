@@ -2,18 +2,22 @@
 	<window title="Edit Players" border="normal"
 		apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('nflInterface.PlayersVM')">
-		<window title="Player Editor" border="normal"
-		mode="modal" visible="@load(vm.currentPlayer ne null)">
+		<window title="Player Editor" border="normal" mode="modal"
+			visible="@load(vm.currentPlayer ne null)">
 			<vbox>
-			<hbox>name:<textbox 
-					value="@load(vm.currentPlayer.full_name)  @save(vm.currentPlayer.full_name, before='save')">
-			</textbox>
-			</hbox>	
-			<hbox>Team:<combobox id="teamcombo"
-					model="@load(vm.teams)" 
-					selectedItem="@load(vm.currentPlayer.team) @save(vm.currentPlayer.team, before='save')">						
-			</combobox>
-			<zscript>
+				<hbox>
+					name:
+					<textbox constraint="no empty"
+						value="@load(vm.currentPlayer.full_name)  @save(vm.currentPlayer.full_name, before='save')">
+					</textbox>
+				</hbox>
+				<hbox>
+					Team:
+					<combobox id="teamcombo" constraint="no empty"
+						model="@load(vm.teams)"
+						selectedItem="@load(vm.currentPlayer.team) @save(vm.currentPlayer.team, before='save')">
+					</combobox>
+					<zscript>
 			<![CDATA[
 				teamcombo.setItemRenderer(new ComboitemRenderer() {
 					void render(item, team, index) {
@@ -42,6 +46,7 @@
 	<groupbox mold="3d" closable="false">
 		<caption label="Player list">
 			<button label="new" onClick="@command('newPlayer')" />	
+			<button label="menu" href="/index.zul" />	
 		</caption>	
 		<listbox model="@load(vm.players)">
 			<listhead>

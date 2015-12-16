@@ -4,8 +4,8 @@
 		viewModel="@id('vm') @init('nflInterface.TeamsVM')">
 		<window title="Team Editor" border="normal"
 		mode="modal" visible="@load(vm.currentTeam ne null)">
-			Name:<textbox value="@load(vm.currentTeam.name)  @save(vm.currentTeam.name, before='save')"></textbox>
-			City:<textbox value="@load(vm.currentTeam.city)  @save(vm.currentTeam.city, before='save')"></textbox>
+			Name:<textbox constraint="no empty" value="@load(vm.currentTeam.name)  @save(vm.currentTeam.name, before='save')"></textbox>
+			City:<textbox constraint="no empty" value="@load(vm.currentTeam.city)  @save(vm.currentTeam.city, before='save')"></textbox>
 			<hbox>
 				<button label="save" onClick="@command('save')"></button>
 				<button label="cancel" onClick="@command('cancel')"></button>
@@ -14,6 +14,7 @@
 	<groupbox mold="3d" closable="false">
 		<caption label="Teams list">
 			<button label="new" onClick="@command('newTeam')" />	
+			<button label="menu" href="/index.zul" />	
 		</caption>	
 		<listbox model="@load(vm.teams)">
 			<listhead>
